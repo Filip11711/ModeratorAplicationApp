@@ -1,0 +1,37 @@
+﻿@model IEnumerable<AplicationInfo>
+
+<table class="table-striped table-bordered dashboard">
+    <caption>Završene prijave</caption>
+    <thead>
+        <tr>
+            <th scope="col">PID</th>
+            <th scope="col">Prijava</th>
+            <th scope="col">Aplikant</th>
+            <th scope="col">Moderator</th>
+            <th scope="col">Početak</th>
+            <th scope="col">Kraj</th>
+            <th scope="col">Zaposlen</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var info in Model)
+        {
+            <tr>
+                <td>@info.PID</td>
+                <td>@info.AplicationId</td>
+                <td>@info.Aplicant</td>
+                <td>@info.Moderator</td>
+                <td>@info.StartTime</td>
+                <td>@info.EndTime</td>
+                @if (info.Taken)
+                {
+                    <td>Da</td>
+                }
+                else
+                {
+                    <td>Ne</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

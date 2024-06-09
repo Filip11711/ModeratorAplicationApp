@@ -1,0 +1,14 @@
+﻿@using ModeratorAplicationApp.Controllers
+@model TaskInfo
+<td>
+    <form asp-action="@nameof(HomeController.AssignModerator)" method="post">
+        <select class="form-control" name="moderator">
+            <option disabled selected value=""></option>
+            <option value="pero">Pero</option>
+            <option value="marko">Marko</option>
+            <option value="admin">Admin</option>
+        </select>
+        <input type="hidden" name="taskId" value="@Model.TID" />
+        <input type="submit" class="btn btn-sm btn-primary" value="Dodijeli" />
+    </form>
+</td>

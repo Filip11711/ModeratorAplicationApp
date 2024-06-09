@@ -1,8 +1,55 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model AktivnostiPodaci
+@{
+    ViewData["Title"] = "Aktivnosti";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+    <div class="col-lg-6">
+        <partial name="ActiveAplications" model="Model.ActiveAplications" />
+    </div>
+    <div class="col-lg-6">
+        <partial name="FinishedAplications" model="Model.FinishedAplications" />
+    </div>
 </div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <partial name="MyTasks" model="Model.MyTasks" />
+    </div>
+</div>
+
+<br />
+<br />
+<h5 class="text-center">Process model:</h5>
+
+<div class="container" id="canvas"></div>
+
+
+@section scripts {
+    <script>
+        async function loadDiagram() {
+            const diagramUrl = '@Url.Action("Diagram", "Home")';
+            const response = await fetch(diagramUrl);
+            if (response.ok)
+                await openDiagram(await response.text())
+        }
+
+        async function openDiagram(bpmnXML) {
+            const bpmnViewer = new BpmnJS({
+                container: '#canvas'
+            });
+            try {
+                await bpmnViewer.importXML(bpmnXML);
+                // access viewer components
+                const canvas = bpmnViewer.get('canvas');
+                // zoom to fit full viewport
+                canvas.zoom('fit-viewport');
+            }
+            catch (err) {
+                console.error('could not load BPMN 2.0 diagram', err);
+            }
+        }
+
+        loadDiagram();
+    </script>
+}

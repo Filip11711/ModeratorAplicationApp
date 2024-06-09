@@ -1,0 +1,39 @@
+﻿@using ModeratorAplicationApp.Controllers
+@model IEnumerable<AplicationInfo>
+
+<table class="table-striped table-bordered dashboard">
+    <caption>Aktivne prijave</caption>
+    <thead>
+        <tr>
+            <th scope="col">PID</th>
+            <th scope="col">Prijava</th>
+            <th scope="col">Aplikant</th>
+            <th scope="col">Početak</th>
+            <th scope="col">Ispitivač</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var info in Model)
+        {
+            <tr>
+                <td>@info.PID</td>
+                <td>@info.AplicationId</td>
+                <td>@info.Aplicant</td>
+                <td>@info.StartTime</td>
+                <td>
+                    @if (info.CanApplyForQuestioning && info.CurrentUserInGroup)
+                    {
+                        <form asp-action="@nameof(HomeController.ApplyForQuestioning)" method="post">
+                            <input type="hidden" name="pid" value="@info.PID" />
+                            <input type="submit" class="btn btn-primary btn-sm" value="Uzmi zadatak" />
+                        </form>
+                    }
+                    else
+                    {
+                        @info.Moderator
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

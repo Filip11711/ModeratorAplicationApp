@@ -1,0 +1,23 @@
+﻿@using ModeratorAplicationApp.Controllers
+@model TaskInfo
+<td></td>
+</tr>
+<tr>
+    <td colspan="7">
+        <form asp-action="@nameof(HomeController.SendSolvedQuestionnaire)" method="post">
+            Pitanje 1: @Model.Question1 <br />
+            <label for="answer1">Odgovor 1: </label>
+            <input type="text" name="answer1" />
+            <br />
+            Pitanje 2: @Model.Question2 <br />
+            <label for="answer2">Odgovor 2: </label>
+            <input type="text" name="answer2" />
+            <br />
+            Pitanje 3: @Model.Question3 <br />
+            <label for="answer3">Odgovor 3: </label>
+            <input type="text" name="answer3" />
+            <br />
+            <input type="hidden" name="taskId" value="@Model.TID" />
+            <input type="submit" class="btn btn-primary btn-sm" value="Pošalji odgovore" />
+        </form>
+    </td>

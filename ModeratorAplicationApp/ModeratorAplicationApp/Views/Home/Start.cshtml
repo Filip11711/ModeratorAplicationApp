@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <h4>Pokreni proces prijave za ulogu moderatora</h4>
+    <form asp-action="Start" method="post">
+        <label for="id">Id prijave</label>
+        <input type="text" name="id" />
+        <br />
+        <label for="email">Email</label>
+        <input type="text" name="email" />
+        <br />
+        <label for="languageKnowledge">Znanje japanskog jezika</label>
+        <input type="text" name="languageKnowledge" />
+        <br />
+        <label for="motivationalLetter">Motivacijsko pismo</label>
+        <input type="text" name="motivationalLetter" />
+        <br />
+        <input type="submit" class="btn btn-sm btn-primary" value="Pošalji prijavu" />
+    </form>
+</div>
